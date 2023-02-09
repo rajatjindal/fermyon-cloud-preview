@@ -17,19 +17,24 @@ var rootCmd = &cobra.Command{
 	Use:   "fermyon-cloud-preview",
 	Short: "fermyon-cloud-preview is a Github Action for deploying preview for pull requests",
 	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("fermyon-cloud-preview called")
 		ctx := context.TODO()
+		os.Setenv("FERMYON_DEPLOYMENT_ENVIRONMENT", "developer-docs-preview")
 
-		fmt.Println("all envs")
-		fmt.Println(os.Environ())
+		// fmt.Println("all envs")
+		// fmt.Println(os.Environ())
 
-		list, err := os.ReadDir("/github/home")
-		if err != nil {
-			logrus.Fatalf(err.Error())
-		}
+		// dir := os.Getenv("GITHUB_WORKSPACE")
+		// fmt.Printf("dirname is %s\n", dir)
+		// list, err := os.ReadDir(dir)
+		// if err != nil {
+		// 	logrus.Fatalf(err.Error())
+		// }
 
-		for _, l := range list {
-			fmt.Printf("dir: %s\n", l)
-		}
+		// fmt.Printf("2nd total files %d\n", len(list))
+		// for _, l := range list {
+		// 	fmt.Printf("2nd dir: %s\n", l)
+		// }
 
 		//TODO: add option to override
 		fermyonClient, err := cloud.NewClient(cloud.ProductionCloudLink)

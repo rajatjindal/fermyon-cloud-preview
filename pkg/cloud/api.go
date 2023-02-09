@@ -39,7 +39,7 @@ type GetAppsResponse struct {
 
 const (
 	ProductionCloudLink = "https://cloud.fermyon.com"
-	TokenBaseDir        = "/home/runner/.config/fermyon"
+	TokenFile           = "/home/app/.config/fermyon/developer-docs-preview.json"
 )
 
 type Client struct {
@@ -52,8 +52,23 @@ type TokenInfo struct {
 	Token string `json:"token"`
 }
 
+func copyTokenFile() error {
+	// we mount the token here due to github stuff with docker based actions
+	rawBytes, err := os.ReadFile("/github/workspace/developer-docs-preview.json")
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(TokenFile, rawBytes, 0644)
+}
+
 func getToken() (string, error) {
-	tokenFile := filepath.Join(TokenBaseDir, os.Getenv("INPUT_FERMYON_DEPLOYMENT_ENV"))
+	err := copyTokenFile()
+	if err != nil {
+		return "", err
+	}
+
+	tokenFile := filepath.Join(TokenFile)
 	raw, err := os.ReadFile(tokenFile)
 	if err != nil {
 		return "", err
