@@ -5,15 +5,6 @@ runs:
   using: "docker"
   image: "docker://ghcr.io/rajatjindal/fermyon-cloud-preview:v0.0.3"
 inputs: 
-  gh_username:
-    description: "github username"
-    required: true
-  gh_password:
-    description: "github password"
-    required: true
-  gh_totp_secret:
-    description: "github totp_secret"
-    required: true
   fermyon_deployment_env:
-    description: "the key to use for login/deploy to Fermyon cloud"
+    description: "the key to use for deploy to Fermyon cloud"
     required: true
