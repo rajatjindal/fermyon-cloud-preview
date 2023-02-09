@@ -22,6 +22,15 @@ var rootCmd = &cobra.Command{
 		fmt.Println("all envs")
 		fmt.Println(os.Environ())
 
+		list, err := os.ReadDir("/github/home")
+		if err != nil {
+			logrus.Fatalf(err.Error())
+		}
+
+		for _, l := range list {
+			fmt.Printf("dir: %s\n", l)
+		}
+
 		//TODO: add option to override
 		fermyonClient, err := cloud.NewClient(cloud.ProductionCloudLink)
 		if err != nil {
