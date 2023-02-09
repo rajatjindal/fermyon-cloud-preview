@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/google/go-github/v50/github"
 	"github.com/rajatjindal/fermyon-cloud-preview/pkg/cloud"
@@ -17,6 +18,9 @@ var rootCmd = &cobra.Command{
 	Short: "fermyon-cloud-preview is a Github Action for deploying preview for pull requests",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx := context.TODO()
+
+		fmt.Println("all envs")
+		fmt.Println(os.Environ())
 
 		//TODO: add option to override
 		fermyonClient, err := cloud.NewClient(cloud.ProductionCloudLink)
