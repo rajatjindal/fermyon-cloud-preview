@@ -3,7 +3,7 @@ name: "fermyon-cloud-preview"
 description: "deploy preview on fermyon cloud and update link on PR"
 runs:
   using: "docker"
-  image: "docker://ghcr.io/rajatjindal/fermyon-cloud-preview:v0.0.1"
+  image: "docker://ghcr.io/rajatjindal/fermyon-cloud-preview:v0.0.3"
 inputs: 
   gh_username:
     description: "github username"
