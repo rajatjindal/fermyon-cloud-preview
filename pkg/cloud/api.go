@@ -53,7 +53,7 @@ type TokenInfo struct {
 }
 
 func getToken() (string, error) {
-	tokenFile := filepath.Join(TokenBaseDir, os.Getenv("FERMYON_DEPLOYMENT_ENVIRONMENT"))
+	tokenFile := filepath.Join(TokenBaseDir, os.Getenv("INPUT_FERMYON_DEPLOYMENT_ENV"))
 	raw, err := os.ReadFile(tokenFile)
 	if err != nil {
 		return "", err
