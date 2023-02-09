@@ -1,11 +1,19 @@
 # action.yml
-name: "krew-release-bot"
-description: "automatically opens PR for upstream krew-index repo when you publish new release of your awesome plugin"
+name: "fermyon-cloud-preview"
+description: "deploy preview on fermyon cloud and update link on PR"
 runs:
   using: "docker"
-  image: "docker://rajatjindal/krew-release-bot:v0.0.43"
-inputs:
-  workdir:
-    description: "Working directory, defaults to env.GITHUB_WORKSPACE"
-  krew_template_file:
-    description: "the path to template file relative to $workdir. e.g. templates/misc/plugin-name.yaml. defaults to .krew.yaml"
+  image: "docker://ghcr.io/rajatjindal/fermyon-cloud-preview:v0.0.1"
+inputs: 
+  gh_username:
+    description: "github username"
+    required: true
+  gh_password:
+    description: "github password"
+    required: true
+  gh_totp_secret:
+    description: "github totp_secret"
+    required: true
+  fermyon_deployment_env:
+    description: "the key to use for login/deploy to Fermyon cloud"
+    required: true
